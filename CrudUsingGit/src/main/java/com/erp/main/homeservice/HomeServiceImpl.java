@@ -1,6 +1,7 @@
 package com.erp.main.homeservice;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,19 @@ public class HomeServiceImpl implements HomeService{
 	public List<Student> getAllData() {
 		// TODO Auto-generated method stub
 		return hr.findAll();
+	}
+
+	@Override
+	public Student getbyid(int rollno) {
+		Student s= hr.findByRollno(rollno);
+		return s;
+		
+	}
+
+	@Override
+	public void updateData(Student s) {
+		hr.save(s);
+		
 	}
 	
 	

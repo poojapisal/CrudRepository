@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +33,19 @@ public class HomeController {
 	{
 		hs.saveData(s);
 		return "Data Saved!";
+	}
+	
+	@GetMapping("getsingleid/{id}")
+	public Student getbyid(@PathVariable("rollno")int rollno)
+	{
+		Student s=hs.getbyid(rollno);
+		return s;
+		
+	}
+	@PutMapping("/update")
+	public String updateData(@PathVariable Student s)
+	{
+		hs.updateData(s);
+		return "Student Update";
 	}
 }
