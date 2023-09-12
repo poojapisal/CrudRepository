@@ -15,9 +15,9 @@ public class HomeServiceImpl implements HomeService{
 	HomeRepository hr;
 	
 	@Override
-	public void saveData(Student s) {
-		// TODO Auto-generated method stub
-		hr.save(s);
+	public Student saveData(Student s) {
+		
+		return hr.save(s);
 	}
 
 	@Override
@@ -34,8 +34,15 @@ public class HomeServiceImpl implements HomeService{
 	}
 
 	@Override
-	public void updateData(Student s) {
-		hr.save(s);
+	public Student updateData(Student s) {
+	return 	hr.save(s);
+		
+	}
+
+	@Override
+	public void deleteData(int rollno) {
+		
+		hr.deleteById(rollno);
 		
 	}
 	

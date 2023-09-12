@@ -3,7 +3,10 @@ package com.erp.main.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,30 +25,38 @@ public class HomeController {
 	@Autowired
 	HomeService hs;
 	@GetMapping("/getAllData")
-	public List<Student> getAllData()
+	public ResponseEntity<List<Student>>  getAllData()
 	{   
 		List<Student> lists=hs.getAllData();
-		return lists;
+		return new ResponseEntity<List<Student>>(lists, HttpStatus.OK);
 	}
 	
 	@PostMapping("/savestudent")
-	public String saveData(@RequestBody Student s)
+	public ResponseEntity<Student> saveData(@RequestBody Student s)
 	{
-		hs.saveData(s);
-		return "Data Saved!";
+		Student s1=hs.saveData(s);
+		return new ResponseEntity<Student>(s1,HttpStatus.CREATED);
 	}
 	
 	@GetMapping("getsingleid/{id}")
-	public Student getbyid(@PathVariable("rollno")int rollno)
+	public ResponseEntity<Student>  getbyid(@PathVariable("rollno")int rollno)
 	{
 		Student s=hs.getbyid(rollno);
-		return s;
+		return new ResponseEntity<Student>(s, HttpStatus.OK);
 		
 	}
 	@PutMapping("/update")
-	public String updateData(@PathVariable Student s)
+	public ResponseEntity<Student> updateData(@PathVariable Student s)
 	{
-		hs.updateData(s);
-		return "Student Update";
+		Student s1=hs.updateData(s);
+		return new ResponseEntity<Student>(s1, HttpStatus.CREATED);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deleteData(@PathVariable("id") int rollno) 
+	{
+	
+		hs.deleteData(rollno);
+		return new ResponseEntity("Student is Deleted",HttpStatus.OK);
 	}
 }

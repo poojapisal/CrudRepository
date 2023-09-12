@@ -6,12 +6,14 @@ import com.erp.main.model.Student;
 
 public interface HomeService {
 
-	void saveData(Student s);
+	Student saveData(Student s);
 
 	List<Student> getAllData();
 
 	Student getbyid(int rollno);
 
-	void updateData(Student s);
+	Student updateData(Student s);
+
+	void deleteData(int rollno);
 
 }
