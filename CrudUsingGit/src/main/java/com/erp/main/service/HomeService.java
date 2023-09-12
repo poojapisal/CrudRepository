@@ -10,4 +10,8 @@ public interface HomeService {
 
 	List<Student> getAllData();
 
+	Student getbyid(int rollno);
+
+	void updateData(Student s);
+
 }
